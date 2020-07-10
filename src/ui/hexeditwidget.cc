@@ -79,6 +79,8 @@ HexEditWidget::HexEditWidget(
       util::settings::hexedit::columnsNumber(),
       util::settings::hexedit::resizeColumnsToWindowWidth());
 
+  hex_edit_->setJumpOnClick(util::settings::hexedit::moveToStartOfChunkOnClick());
+
   connect(&parsers_menu_, &QMenu::triggered, this, &HexEditWidget::parse);
   setParserIds(dynamic_cast<VelesMainWindow*>(
                    MainWindowWithDetachableDockWidgets::getFirstMainWindow())

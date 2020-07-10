@@ -51,6 +51,8 @@ class HexEdit : public QAbstractScrollArea {
    *  turn on automatic mode which will adjust bytes per row to window size */
   void setBytesPerRow(int bytes_count, bool automatic);
   void setAutoBytesPerRow(bool automatic);
+  /* Sets if we should we jump to the beginning of the chunk*/
+  void setJumpOnClick(bool jump);
   /** Scroll screen to make byte visible */
   void scrollToByte(qint64 bytePos, bool minimal_change = false);
   void scrollRows(qint64 num_rows);
@@ -99,6 +101,8 @@ class HexEdit : public QAbstractScrollArea {
   /** Indicates if bytes per row should be automatically adjusted to window
    * width */
   bool autoBytesPerRow_;
+  /** Jump to start of chunk on of mouse click */
+  bool jumpToStartOnClick_;
   /** Byte offset of whole blob */
   qint64 startOffset_;
   /** Total number of rows in hex edit (counting last address only row) */

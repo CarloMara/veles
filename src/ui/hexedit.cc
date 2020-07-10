@@ -960,6 +960,10 @@ void HexEdit::setAutoBytesPerRow(bool automatic) {
   viewport()->update();
 }
 
+void HexEdit::setJumpOnClick(bool jump){
+  jumpToStartOnClick_ = jump;
+}
+
 void HexEdit::resetCursor() {
   cursor_visible_ = true;
   cursor_timer_.start();
@@ -1241,12 +1245,13 @@ void HexEdit::mousePressEvent(QMouseEvent* event) {
   auto clickedByteNum = pointToBytePos(event->pos());
   auto area = pointToWindowArea(event->pos());
 
-  auto newSelectedChunk =
-      dataModel_->indexFromPos(clickedByteNum, selectedChunk().parent());
-  if (newSelectedChunk.isValid()) {
-    setSelectedChunk(newSelectedChunk);
+  if(jumpToStartOnClick_ == true){
+    auto newSelectedChunk =
+        dataModel_->indexFromPos(clickedByteNum, selectedChunk().parent());
+    if (newSelectedChunk.isValid()) {
+      setSelectedChunk(newSelectedChunk);
+    }
   }
-
   if (event->button() == Qt::LeftButton &&
       (area == WindowArea::ASCII || area == WindowArea::HEX)) {
     current_area_ = area;

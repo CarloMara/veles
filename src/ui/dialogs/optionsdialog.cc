@@ -73,11 +73,11 @@ void OptionsDialog::show() {
 
   ui->colorsBox->setCurrentText(util::settings::theme::theme());
   Qt::CheckState auto_columns_checked =
-      util::settings::hexedit::defaultResizeColumnsToWindowWidth()
+      util::settings::hexedit::resizeColumnsToWindowWidth()
           ? Qt::Checked
           : Qt::Unchecked;
   Qt::CheckState jump_to_start_checked =
-    util::settings::hexedit::defaultMoveToStartOfChunkOnClick()
+    util::settings::hexedit::moveToStartOfChunkOnClick()
         ? Qt::Checked
         : Qt::Unchecked;
   ui->hexColumnsAutoCheckBox->setCheckState(auto_columns_checked);
@@ -136,6 +136,7 @@ void OptionsDialog::applyChanges() {
   util::settings::hexedit::setResizeColumnsToWindowWidth(
       ui->hexColumnsAutoCheckBox->checkState() == Qt::Checked);
   util::settings::hexedit::setColumnsNumber(ui->hexColumnsSpinBox->value());
+
   util::settings::hexedit::setMoveToStartOfChunkOnClick(
       ui->hexJumpToStartCheckBox->checkState() == Qt::Checked);
 
