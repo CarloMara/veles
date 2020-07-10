@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>436</width>
-    <height>244</height>
+    <width>476</width>
+    <height>251</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -26,12 +26,12 @@
          <widget class="QComboBox" name="cbFindFormat">
           <item>
            <property name="text">
-            <string>Hex</string>
+            <string>UTF-8</string>
            </property>
           </item>
           <item>
            <property name="text">
-            <string>UTF-8</string>
+            <string>Hex</string>
            </property>
           </item>
          </widget>
