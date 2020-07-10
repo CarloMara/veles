@@ -72,13 +72,18 @@ void OptionsDialog::show() {
   ui->fixedFontComboBox->setCurrentFont(util::settings::theme::fixedFont());
 
   ui->colorsBox->setCurrentText(util::settings::theme::theme());
-  Qt::CheckState checkState = Qt::Unchecked;
-  if (util::settings::hexedit::resizeColumnsToWindowWidth()) {
-    checkState = Qt::Checked;
-  }
-  ui->hexColumnsAutoCheckBox->setCheckState(checkState);
+  Qt::CheckState auto_columns_checked =
+      util::settings::hexedit::defaultResizeColumnsToWindowWidth()
+          ? Qt::Checked
+          : Qt::Unchecked;
+  Qt::CheckState jump_to_start_checked =
+    util::settings::hexedit::defaultMoveToStartOfChunkOnClick()
+        ? Qt::Checked
+        : Qt::Unchecked;
+  ui->hexColumnsAutoCheckBox->setCheckState(auto_columns_checked);
   ui->hexColumnsSpinBox->setValue(util::settings::hexedit::columnsNumber());
-  ui->hexColumnsSpinBox->setEnabled(checkState != Qt::Checked);
+  ui->hexColumnsSpinBox->setEnabled(auto_columns_checked != Qt::Checked);
+  ui->hexJumpToStartCheckBox->setCheckState(jump_to_start_checked);
 
   color_3d_begin_button_->setColor(util::settings::visualization::colorBegin());
   color_3d_end_button_->setColor(util::settings::visualization::colorEnd());
@@ -97,11 +102,16 @@ void OptionsDialog::resetToDefaults() {
       util::settings::hexedit::defaultResizeColumnsToWindowWidth()
           ? Qt::Checked
           : Qt::Unchecked;
+  Qt::CheckState jump_to_start_checked =
+    util::settings::hexedit::defaultMoveToStartOfChunkOnClick()
+        ? Qt::Checked
+        : Qt::Unchecked;
 
   ui->hexColumnsAutoCheckBox->setCheckState(auto_columns_checked);
   ui->hexColumnsSpinBox->setValue(
       util::settings::hexedit::defaultColumnsNumber());
   ui->hexColumnsSpinBox->setEnabled(auto_columns_checked != Qt::Checked);
+  ui->hexJumpToStartCheckBox->setCheckState(jump_to_start_checked);
 
   ui->colorsBox->setCurrentText(util::settings::theme::defaultTheme());
 
@@ -126,6 +136,8 @@ void OptionsDialog::applyChanges() {
   util::settings::hexedit::setResizeColumnsToWindowWidth(
       ui->hexColumnsAutoCheckBox->checkState() == Qt::Checked);
   util::settings::hexedit::setColumnsNumber(ui->hexColumnsSpinBox->value());
+  util::settings::hexedit::setMoveToStartOfChunkOnClick(
+      ui->hexJumpToStartCheckBox->checkState() == Qt::Checked);
 
   util::settings::visualization::setColorBegin(
       color_3d_begin_button_->getColor());

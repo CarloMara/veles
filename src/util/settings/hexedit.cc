@@ -51,6 +51,21 @@ void setResizeColumnsToWindowWidth(bool on) {
   settings.setValue("hexedit.resizeColumnsToWindowWidth", on);
 }
 
+bool defaultMoveToStartOfChunkOnClick() { return false; }
+
+bool moveToStartOfChunkOnClick() {
+  QSettings settings;
+  return settings
+      .value("hexedit.moveToStartOfChunkOnClick",
+             defaultMoveToStartOfChunkOnClick())
+      .toBool();
+}
+
+void setMoveToStartOfChunkOnClick(bool on) {
+  QSettings settings;
+  settings.setValue("hexedit.moveToStartOfChunkOnClick", on);
+}
+
 }  // namespace hexedit
 }  // namespace settings
 }  // namespace util

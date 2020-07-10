@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>297</width>
-    <height>344</height>
+    <width>421</width>
+    <height>541</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -114,6 +114,20 @@
            </widget>
           </item>
          </layout>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="0">
+        <item>
+         <widget class="QCheckBox" name="hexJumpToStartCheckBox">
+          <property name="layoutDirection">
+           <enum>Qt::LeftToRight</enum>
+          </property>
+          <property name="text">
+           <string>On click move to the beginning of the chunk </string>
+          </property>
+         </widget>
         </item>
        </layout>
       </item>

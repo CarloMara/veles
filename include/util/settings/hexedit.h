@@ -29,6 +29,10 @@ bool defaultResizeColumnsToWindowWidth();
 bool resizeColumnsToWindowWidth();
 void setResizeColumnsToWindowWidth(bool on);
 
+bool defaultMoveToStartOfChunkOnClick();
+bool moveToStartOfChunkOnClick();
+void setMoveToStartOfChunkOnClick(bool on);
+
 }  // namespace hexedit
 }  // namespace settings
 }  // namespace util
